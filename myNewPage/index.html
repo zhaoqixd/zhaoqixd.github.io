@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/zhaoqixd.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/zhaoqixd.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/zhaoqixd.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/zhaoqixd.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/zhaoqixd.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/zhaoqixd.github.io/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhaoqixd.github.io","root":"/zhaoqixd.github.io/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前端排序算法汇总         ul {       list-style-type: none;      }       pre {        display: none;      }       button {       margin-bottom: 10px;      }             冒泡排序       动图 代码">
+<meta property="og:type" content="website">
+<meta property="og:title" content="George&#39;s Bolg">
+<meta property="og:url" content="https://zhaoqixd.github.io/zhaoqixd.github.io/myNewPage/index.html">
+<meta property="og:site_name" content="George&#39;s Bolg">
+<meta property="og:description" content="前端排序算法汇总         ul {       list-style-type: none;      }       pre {        display: none;      }       button {       margin-bottom: 10px;      }             冒泡排序       动图 代码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/bubbleSort.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/selectionSort.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/insertionSort.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/mergeSort.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/heapSort.gif">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2019/03/quickSort.gif">
+<meta property="article:published_time" content="2022-09-24T13:25:38.992Z">
+<meta property="article:modified_time" content="2022-09-24T13:25:32.668Z">
+<meta property="article:author" content="George">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.runoob.com/wp-content/uploads/2019/03/bubbleSort.gif">
+
+<link rel="canonical" href="https://zhaoqixd.github.io/zhaoqixd.github.io/myNewPage/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | George's Bolg
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/zhaoqixd.github.io/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">George's Bolg</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/zhaoqixd.github.io/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/zhaoqixd.github.io/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/zhaoqixd.github.io/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/zhaoqixd.github.io/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-mynewpage">
+
+    <a href="/zhaoqixd.github.io/myNewPage" rel="section"><i class="fa fa-user fa-fw"></i>个人</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>前端排序算法汇总</title>
+  <style>
+     ul {
+      list-style-type: none;
+     }
+
+     pre {
+       display: none;
+     }
+
+     button {
+      margin-bottom: 10px;
+     }
+  </style>
+</head>
+<body>
+  <ul id="main">
+    <li><h3>冒泡排序</h3>
+      <button class="show_btn" value="0">动图</button> <button class="code_btn" value="0">代码</button>
+      <img src="https://www.runoob.com/wp-content/uploads/2019/03/bubbleSort.gif" style="width: 100%; display: none;"/><br/>
+    </li>
+    <li><h3>选择排序</h3>
+      <button class="show_btn" value="1">动图</button> <button class="code_btn" value="1">代码</button>
+      <img src="https://www.runoob.com/wp-content/uploads/2019/03/selectionSort.gif" style="width: 100%; display: none;" /><br/>
+    </li>
+    <li><h3>插入排序</h3>
+      <button class="show_btn" value="2">动图</button> <button class="code_btn" value="2">代码</button>
+      <img src="https://www.runoob.com/wp-content/uploads/2019/03/insertionSort.gif" style="width: 100%; display: none;"/><br/>
+    </li>
+    <li><h3>归并排序</h3>
+      <button class="show_btn" value="3">动图</button> <button class="code_btn" value="3">代码</button>
+      <img src="https://www.runoob.com/wp-content/uploads/2019/03/mergeSort.gif" style="width: 100%; display: none;"/><br/>
+    </li>
+    <li><h3>堆排序</h3>
+      <button class="show_btn" value="4">动图</button> <button class="code_btn" value="4">代码</button>
+      <img src="https://www.runoob.com/wp-content/uploads/2019/03/heapSort.gif" style="width: 100%; display: none;"/><br/>
+    </li>
+    <li><h3>快速排序</h3>
+      <button class="show_btn" value="5">动图</button> <button class="code_btn" value="5">代码</button>
+      <img src="https://www.runoob.com/wp-content/uploads/2019/03/quickSort.gif" style="width: 100%; display: none;"/><br/>
+    </li>
+  </ul>
+  <script>
+    let arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];
+    window.onload = function(){
+      bindShowAndHide();
+      showSortAnswer();
+    }
+    
+    // 统一绑定显示和隐藏动图功能
+    function bindShowAndHide (){
+      let dom = document.getElementById('main');
+      let imgArr = document.getElementsByTagName('img');
+      let preArr = document.getElementsByTagName('pre');
+      // 事件委托
+      dom.onclick = function(e){
+        if(e.target.className==='show_btn'){
+          imgArr[e.target.value].style['display'] = imgArr[e.target.value].style['display'] == 'block' ? 'none': 'block';
+        }else if(e.target.className==='code_btn'){
+          preArr[e.target.value].style['display'] = preArr[e.target.value].style['display'] == 'block' ? 'none': 'block';
+        }
+      }
+    }
+
+    // 显示排序后的排序结果
+    function showSortAnswer (){
+      let methodArr = ['BubbleSort','SelectSort','insertSort','mergeSort','heapSort','quickSort']
+      let domArr = document.getElementById('main').children;
+      for(let i = 0; i < domArr.length; i++){
+        domArr[i].innerHTML +=`排序结果：${eval(`${methodArr[i]}(arr)`).join(' ')}`;
+        if(i == 3){
+          domArr[i].innerHTML += `<pre>${eval('mergeSort')}<br/>${eval('merge')}</pre>`;
+        }else if(i == 4){
+          domArr[i].innerHTML += `<pre>${eval('heapify')}<br/>${eval('buildMaxHeap')}<br/>${eval('heapSort')}</pre>`;
+        }else if(i == 5){
+          domArr[i].innerHTML += `<pre>${eval('quickSort')}<br/>${eval('partition')}</pre>`;
+        }else{
+          domArr[i].innerHTML += `<pre>${eval(`${methodArr[i]}`)}</pre>`;
+        }
+      }
+    }
+
+    /*冒泡排序*/
+    function BubbleSort(args){
+      let arr  = [...args]
+      for(let i = 0; i < arr.length; i++ ){
+        for(let j = i + 1; j < arr.length; j++ ){
+          if(arr[i] > arr[j]){
+              [arr[i] , arr[j]] =  [arr[j] , arr[i]]
+          }
+        }
+      }
+      return arr;
+    }
+
+
+    /*选择排序*/
+    function SelectSort(args){
+      let arr = [...args];
+      for(let i = 0; i < arr.length; i++){
+        let index = i;
+        for(let j = i; j < arr.length; j++){
+          if(arr[j] < arr[index]){
+            index = j;
+          }
+        }
+        [arr[index] , arr[i]] = [arr[i] , arr[index]]
+      }
+      return arr;
+    }
+    
+
+    /*插入排序*/
+    function insertSort(args){
+      let arr = [...args];
+      let  preIndex , cur;
+      for(let i = 1; i < arr.length; i++){
+        preIndex = i - 1;
+        cur = arr[i];
+        while(preIndex >= 0 && arr[preIndex] > cur){
+          arr[preIndex + 1] = arr[preIndex];
+          preIndex --;
+        }
+        arr[preIndex + 1] = cur;
+      }
+      return arr;
+    }
+    
+
+    
+    /*归并排序*/
+    function mergeSort(arr){
+      let len = arr.length;
+      if(len < 2){
+        return arr;
+      }
+      let mid = Math.floor(len/2);
+      let left = arr.slice(0, mid);
+      let right = arr.slice(mid);
+      return merge(mergeSort(left), mergeSort(right));
+    }
+
+    function merge(left, right){
+      let res = [];
+      while(left.length && right.length){
+        if(left[0]<=right[0]){
+          res.push(left.shift());
+        }else{
+          res.push(right.shift());
+        }
+      }
+      if(left.length){
+        res = res.concat(left)
+      }else{
+        res = res.concat(right);
+      }
+      return res;
+    }
+
+
+    /*堆排序*/
+    let heap_len;
+    // 堆维护方法
+    function heapify(arr , i){
+      let left = 2 * i + 1;
+      let right = 2 * i + 2;
+      let largest  = i;
+      if(left < heap_len && arr[largest] < arr[left]){
+          largest = left;
+      }
+      if(right < heap_len && arr[largest] < arr[right]){
+        largest = right;
+      }
+      if(largest !== i){
+        [arr[largest] , arr[i]] = [arr[i] , arr[largest]];
+        heapify(arr, largest);
+      }
+    }
+    // 建大顶堆
+    function buildMaxHeap(arr){
+      heap_len = arr.length;
+      for(let i = Math.floor(heap_len / 2); i >= 0; i--){
+          heapify(arr, i);
+      }
+    }
+    // 堆排序
+    function heapSort(arr){
+      buildMaxHeap(arr);
+      for(let i = arr.length - 1;i > 0; i--){
+          [arr[i] , arr[0]] = [arr[0] , arr[i]];
+          heap_len --;
+          heapify(arr, 0);
+      }
+      return arr;
+    }
+
+
+    /*快速排序*/
+    function quickSort(arr, left = 0, right = arr.length - 1){
+      // 这里有个问题，变量不能用let声明
+      var len = arr.length,
+      partitionIndex,
+      left = typeof left !== "number" ? 0 : left,
+      right = typeof right !== "number" ? len - 1 : right;
+      if(left < right){
+        partitionIndex = partition(arr, left, right);
+        quickSort(arr, left, partitionIndex - 1);
+        quickSort(arr,partitionIndex + 1, right);
+      }
+      return arr;
+    }
+    // 最后的返回结果就是左侧都比标志位小，右边都比标志位大
+    function partition(arr, left, right){
+      let pivot = left;     // 标志位
+      let index = pivot + 1;
+      for(let i = index; i <= right; i++){
+          if(arr[i] < arr[pivot]){
+              [arr[index] , arr[i]] = [arr[i] , arr[index]]
+              index ++;
+          }
+      }
+      [arr[pivot], arr[index - 1]] = [arr[index - 1], arr[pivot]];
+      return index - 1;
+    }
+
+  </script>
+</body>
+</html>
+      </div>
+      
+      
+      
+    </div>
+    
+
+    
+    
+    
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-number">2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-number">3.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-number">4.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-number">5.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main"><span class="nav-number">6.</span> <span class="nav-text">快速排序</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">George</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/zhaoqixd.github.io/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">George</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/zhaoqixd.github.io/lib/anime.min.js"></script>
+  <script src="/zhaoqixd.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/zhaoqixd.github.io/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/zhaoqixd.github.io/js/utils.js"></script>
+
+<script src="/zhaoqixd.github.io/js/motion.js"></script>
+
+
+<script src="/zhaoqixd.github.io/js/schemes/pisces.js"></script>
+
+
+<script src="/zhaoqixd.github.io/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
