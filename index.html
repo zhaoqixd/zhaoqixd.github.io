@@ -165,6 +165,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/16/React-render-Props%E5%A6%99%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E8%8E%AB%E5%85%B0%E7%89%B9.webp">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George's Bolg">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/16/React-render-Props%E5%A6%99%E7%94%A8/" class="post-title-link" itemprop="url">React render-Props妙用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-16 21:46:08" itemprop="dateCreated datePublished" datetime="2022-10-16T21:46:08+08:00">2022-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-17 11:28:22" itemprop="dateModified" datetime="2022-10-17T11:28:22+08:00">2022-10-17</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/10/16/React-render-Props%E5%A6%99%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/10/16/React-render-Props%E5%A6%99%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>上一篇博客记录了React官网关于Render-props的例子，然后又重新寻找了一个常见的例子来学习render-props的写法</p>
+<p>我们的目标是实现一个简单的todolist，当然不用checkbox来实现勾选的功能，只需要字体加粗表示完成。</p>
+<p>我们首先能想到的一定是这样的代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">TodoListDemo</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [todos, setTodos] = <span class="title function_">useState</span>([</span><br><span class="line">    &#123; <span class="attr">label</span>: <span class="string">&#x27;Write tests&#x27;</span>, <span class="attr">status</span>: <span class="string">&#x27;done&#x27;</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">label</span>: <span class="string">&#x27;Sent report&#x27;</span>, <span class="attr">status</span>: <span class="string">&#x27;progress&#x27;</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">label</span>: <span class="string">&#x27;Answer emails&#x27;</span>, <span class="attr">status</span>: <span class="string">&#x27;done&#x27;</span> &#125;</span><br><span class="line">    ])</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">TodoItemDemo</span> <span class="attr">todos</span>=<span class="string">&#123;todos&#125;</span> /&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">TodoItemDemo</span> = (<span class="params">props</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">isComplete</span> = (<span class="params">todo</span>) =&gt; todo.<span class="property">status</span> === <span class="string">&#x27;done&#x27;</span>;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;</span></span><br><span class="line"><span class="language-xml">        props.todos.map((todo, i)=&gt;</span></span><br><span class="line"><span class="language-xml">           <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;i&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;</span></span><br><span class="line"><span class="language-xml">              isComplete(todo) ? </span></span><br><span class="line"><span class="language-xml">              <span class="tag">&lt;<span class="name">b</span>&gt;</span>&#123;todo.label&#125;<span class="tag">&lt;/<span class="name">b</span>&gt;</span> :</span></span><br><span class="line"><span class="language-xml">              todo.label</span></span><br><span class="line"><span class="language-xml">            &#125;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        )</span></span><br><span class="line"><span class="language-xml">      &#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码实现了功能，但是存在一个问题，子组件需要知道父组件传递的属性是什么？这次是label，下次如果修改为tag呢？能否让子组件 <code>&lt;TodoItemDemo/&gt; </code>只是负责渲染。这时我们就可以使用render-prop</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span>  <span class="title function_">TodoList</span>  = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> [todos, setTodos] = <span class="title function_">useState</span>([</span><br><span class="line">    &#123; <span class="attr">label</span>: <span class="string">&#x27;Write tests&#x27;</span>, <span class="attr">status</span>: <span class="string">&#x27;done&#x27;</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">label</span>: <span class="string">&#x27;Sent report&#x27;</span>, <span class="attr">status</span>: <span class="string">&#x27;progress&#x27;</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">label</span>: <span class="string">&#x27;Answer emails&#x27;</span>, <span class="attr">status</span>: <span class="string">&#x27;done&#x27;</span> &#125;</span><br><span class="line">    ])</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">isComplete</span> = (<span class="params">todo</span>) =&gt; todo.<span class="property">status</span> === <span class="string">&#x27;done&#x27;</span>;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">TodoItem</span> <span class="attr">todos</span>=<span class="string">&#123;todos&#125;</span> <span class="attr">render</span>=<span class="string">&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">todo</span> =&gt;</span> isComplete(todo) ? </span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">b</span>&gt;</span>&#123;todo.label&#125;<span class="tag">&lt;/<span class="name">b</span>&gt;</span> :</span></span><br><span class="line"><span class="language-xml">          todo.label</span></span><br><span class="line"><span class="language-xml">        &#125;&gt;</span></span><br><span class="line"><span class="language-xml">        &#123;/* &#123;</span></span><br><span class="line"><span class="language-xml">          todo =&gt; isComplete(todo) ? </span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">b</span>&gt;</span>&#123;todo.label&#125;<span class="tag">&lt;/<span class="name">b</span>&gt;</span> :</span></span><br><span class="line"><span class="language-xml">          todo.label</span></span><br><span class="line"><span class="language-xml">        &#125; */&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">TodoItem</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">TodoItem</span> = (<span class="params">&#123;todos, render&#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;</span></span><br><span class="line"><span class="language-xml">        todos.map((todo,i)=&gt; <span class="tag">&lt;<span class="name">li</span>  <span class="attr">key</span>=<span class="string">&#123;i&#125;</span>&gt;</span>&#123;render(todo)&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span>)</span></span><br><span class="line"><span class="language-xml">      &#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中在父组件中定义渲染函数render，从而确定需要渲染的字段，而这些字段对于子组件都是不可见的。这也时render-prop的优点，同时写法上使用children语法也是可以的。</p>
+<p>总结一下：可能你感觉这个简单案例中render-props写法并没有什么大用，你甚至可以直接将子组件和父组件合并。但是设想一下在比较大的项目中，有一些不涉及逻辑的纯UI部分是不是可以用这种方法拆分为子组件呢？</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zhaoqixd/react-blog-example/blob/master/react-blog-example/src/components/TodoList.js">代码地址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/08/Render-props/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -854,7 +957,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -916,12 +1019,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">12k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9 分钟</span>
+    <span title="站点阅读时长">11 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
